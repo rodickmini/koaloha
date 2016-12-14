@@ -2,12 +2,13 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:06:12
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-14 20:01:37
+* @Last Modified time: 2016-12-14 20:09:30
 */
 
 'use strict'
 
-let utils = require('../utils')
+const utils = require('../utils')
+const debug = utils.debug
 
 module.exports.init = (router) => {
   router.get('/session', getSession)
@@ -15,7 +16,7 @@ module.exports.init = (router) => {
 }
 
 function* getSession() {
-  utils.debug('get Session...')
+  debug('get Session...')
   this.body = {
     name: 'caiyou',
     sex: 'male'
@@ -23,7 +24,8 @@ function* getSession() {
 }
 
 function* login() {
-  utils.debug('login..')
+  debug('login..')
+  debug(this.request.body)
   this.body = {
     code: 0
   }
