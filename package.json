@@ -23,6 +23,7 @@
     "koa": "^1.2.4"
   },
   "devDependencies": {
+    "eslint": "^3.12.1",
     "supervisor": "^0.12.0"
   }
 }
