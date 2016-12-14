@@ -20,7 +20,9 @@
   "dependencies": {
     "co": "^4.6.0",
     "debug": "^2.4.0",
-    "koa": "^1.2.4"
+    "koa": "^1.2.4",
+    "koa-bodyparser": "^2.3.0",
+    "koa-router": "^5.4.0"
   },
   "devDependencies": {
     "eslint": "^3.12.1",
