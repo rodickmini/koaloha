@@ -4,6 +4,7 @@
   "description": "A koa based framework",
   "main": "index.js",
   "scripts": {
+    "dev": "NODE_ENV=development DEBUG=koaloha supervisor index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/rodickmini/koaloha/issues"
   },
-  "homepage": "https://github.com/rodickmini/koaloha#readme"
+  "homepage": "https://github.com/rodickmini/koaloha#readme",
+  "dependencies": {
+    "co": "^4.6.0",
+    "debug": "^2.4.0",
+    "koa": "^1.2.4"
+  },
+  "devDependencies": {
+    "supervisor": "^0.12.0"
+  }
 }
