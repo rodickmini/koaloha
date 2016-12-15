@@ -20,6 +20,7 @@
   "dependencies": {
     "co": "^4.6.0",
     "debug": "^2.4.0",
+    "jsonwebtoken": "^7.2.1",
     "koa": "^1.2.4",
     "koa-bodyparser": "^2.3.0",
     "koa-onerror": "^3.0.1",
