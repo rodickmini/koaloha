@@ -4,7 +4,7 @@
   "description": "A koa based framework",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development DEBUG=koaloha supervisor index.js",
+    "dev": "NODE_ENV=development COMPANY=heqiauto DEBUG=koaloha supervisor index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
