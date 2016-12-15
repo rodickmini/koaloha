@@ -24,7 +24,8 @@
     "koa": "^1.2.4",
     "koa-bodyparser": "^2.3.0",
     "koa-onerror": "^3.0.1",
-    "koa-router": "^5.4.0"
+    "koa-router": "^5.4.0",
+    "node-fetch": "^1.6.3"
   },
   "devDependencies": {
     "eslint": "^3.12.1",
