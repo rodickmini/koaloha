@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 15:11:11
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-15 17:22:53
+* @Last Modified time: 2016-12-15 20:37:35
 */
 
 'use strict'
@@ -12,6 +12,7 @@ let app = require('koa')(),
   router = require('koa-router')(),
   bodyParser = require('koa-bodyparser'),
   onerror = require('koa-onerror'),
+  mongoose = require('mongoose'),
   controllers = require('./controllers/'),
   utils = require('./utils/'),
   debug = utils.debug
@@ -22,6 +23,8 @@ co(function * () {
   * 错误处理，出错会返回一个html页面，显示错误信息，NODE_ENV设置为非development时不显示trackback
   */
   onerror(app)
+
+  mongoose.connect('mongodb://localhost/koaloha')
 
   /**
   * 解析请求体，通过this.request.body可以取到，请求头Content-Type必须显式设置，例如：application/json
