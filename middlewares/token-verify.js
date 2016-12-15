@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-15 16:45:45
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-15 17:27:25
+* @Last Modified time: 2016-12-15 17:37:21
 */
 
 'use strict'
@@ -10,6 +10,7 @@
 const utils = require('../utils')
 const debug = utils.debug
 const jwt = require('jsonwebtoken')
+const config = require('../config')
 const co_verify = function(token, secretOrPublicKey) {
   return function(cb) {
     jwt.verify(token, secretOrPublicKey, cb)
@@ -22,7 +23,7 @@ module.exports = function* (next) {
   debug('tokenFromClient: %s', tokenFromClient)
 
   try {
-    const decoded = yield co_verify(tokenFromClient, 'koa aloha')
+    const decoded = yield co_verify(tokenFromClient, config.jwt.key)
     debug('decoded: %o', decoded)
     this.token = decoded//将解析出来的obj挂载在this.token对象上
   }catch(err) {
