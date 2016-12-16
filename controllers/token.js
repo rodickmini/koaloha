@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:06:12
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-16 11:42:11
+* @Last Modified time: 2016-12-16 13:55:10
 */
 
 'use strict'
@@ -10,7 +10,6 @@
 const utils = require('../utils')
 const debug = utils.debug
 const jwt = require('jsonwebtoken')
-const fetch = require('node-fetch')
 const md5 = require('md5')
 const config = require('../config')
 

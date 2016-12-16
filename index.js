@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 15:11:11
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-16 11:27:52
+* @Last Modified time: 2016-12-16 14:21:03
 */
 
 'use strict'
@@ -13,6 +13,8 @@ let app = require('koa')(),
   bodyParser = require('koa-bodyparser'),
   onerror = require('koa-onerror'),
   mongoose = require('mongoose'),
+  render = require('koa-ejs'),
+  path = require('path'),
   controllers = require('./controllers/'),
   utils = require('./utils/'),
   debug = utils.debug
@@ -29,6 +31,20 @@ co(function * () {
   */
   onerror(app)
 
+  /**
+  * koa-ejs模板配置
+  */
+  render(app, {
+    root: path.join(__dirname, 'views'),
+    layout: 'layout',
+    viewExt: 'html',
+    cache: false,//开启后会将模板缓存在内存中
+    debug: true
+  })
+
+  /**
+  * mongodb连接
+  */
   mongoose.connect('mongodb://localhost/koaloha')
 
   /**
