@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-16 12:21:47
+* @Last Modified time: 2016-12-16 12:36:17
 */
 
 'use strict'
@@ -52,7 +52,11 @@ function* newArticle() {
 }
 
 function* getArticles() {
-  let articles = yield ArticleModel.find()
+  debug('query, %o', this.query)
+
+  let start = this.query.start || 0
+  let limit = this.query.limit || 10
+  let articles = yield ArticleModel.find().skip(~~start).limit(~~limit)
   debug('articles: %o', articles)
   this.status = 200
   this.body = {
