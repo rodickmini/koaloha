@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-16 12:50:06
+* @Last Modified time: 2016-12-16 13:47:12
 */
 
 'use strict'
@@ -32,7 +32,7 @@ function* newArticle() {
   let result = yield new ArticleModel({
     title: data.title,
     content: data.content,
-    author: data.author,
+    author: !data.author || data.author === '' ? 'rodick' : data.author,
     createTime: +new Date(),
     tags: data.tags
   }).save().catch(err => {
