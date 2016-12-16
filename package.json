@@ -30,7 +30,8 @@
     "lodash": "^4.17.2",
     "md5": "^2.2.1",
     "mongoose": "^4.7.2",
-    "node-fetch": "^1.6.3"
+    "node-fetch": "^1.6.3",
+    "normalize.css": "^5.0.0"
   },
   "devDependencies": {
     "eslint": "^3.12.1",
