@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-16 11:32:11
+* @Last Modified time: 2016-12-16 12:21:47
 */
 
 'use strict'
@@ -15,6 +15,7 @@ const ArticleModel = require('../models/article')
 
 module.exports.init = (router) => {
   router.post('/articles', tokenVerify, newArticle)
+  router.get('/articles', tokenVerify, getArticles)
 }
 
 function* newArticle() {
@@ -41,6 +42,7 @@ function* newArticle() {
 
   debug('save article result: %o', result)
 
+  this.status = 201
   this.body = {
     code: 0,
     data: {
@@ -48,3 +50,17 @@ function* newArticle() {
     }
   }
 }
+
+function* getArticles() {
+  let articles = yield ArticleModel.find()
+  debug('articles: %o', articles)
+  this.status = 200
+  this.body = {
+    code: 0,
+    data: {
+      articles: articles
+    }
+  }
+}
+
+
