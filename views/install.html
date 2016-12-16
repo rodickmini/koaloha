@@ -1,4 +1,17 @@
+<link rel="stylesheet" href="css/install.css">
 <h3 style="font-weight: 600;">
   Install - koaloha
 </h3>
-<p><%= test%></p>
+<form action="/siteinfo" method="POST">
+  <p class="form-control">
+    <label for="site-name">site name</label>
+    <input id="site-name" name="site_name" type="text" placeholder="type your site name">
+  </p>
+  <p class="form-control">
+    <label for="author-name">author name</label>
+    <input id="author-name" name="author_name" type="text" placeholder="type your name, as author">
+  </p>
+  <p class="form-control">
+    <input type="submit" value="提交"/>
+  </p>
+</form>
