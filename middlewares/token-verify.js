@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-15 16:45:45
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-15 17:37:21
+* @Last Modified time: 2016-12-16 15:47:34
 */
 
 'use strict'
@@ -26,9 +26,9 @@ module.exports = function* (next) {
     const decoded = yield co_verify(tokenFromClient, config.jwt.key)
     debug('decoded: %o', decoded)
     this.token = decoded//将解析出来的obj挂载在this.token对象上
+    return yield next
   }catch(err) {
     debug(err)
     this.throw(401, err.name)//无效jwt直接抛出错误
   }
-  return yield next
 }
