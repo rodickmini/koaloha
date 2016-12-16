@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 15:11:11
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-16 14:21:03
+* @Last Modified time: 2016-12-16 14:35:58
 */
 
 'use strict'
@@ -15,6 +15,7 @@ let app = require('koa')(),
   mongoose = require('mongoose'),
   render = require('koa-ejs'),
   path = require('path'),
+  staticFile = require('koa-static'),
   controllers = require('./controllers/'),
   utils = require('./utils/'),
   debug = utils.debug
@@ -51,6 +52,13 @@ co(function * () {
   * 解析请求体，通过this.request.body可以取到，请求头Content-Type必须显式设置，例如：application/json
   */
   app.use(bodyParser())
+
+  /**
+  * 静态文件server，允许浏览器缓存7天
+  */
+  app.use(staticFile('static', {
+    maxage: 1000 * 60 * 60 * 24 * 7
+  }))
 
   /**
   * controller语法糖，分文件组织
