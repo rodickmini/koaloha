@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:06:12
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-16 11:39:36
+* @Last Modified time: 2016-12-16 11:42:11
 */
 
 'use strict'
@@ -11,6 +11,7 @@ const utils = require('../utils')
 const debug = utils.debug
 const jwt = require('jsonwebtoken')
 const fetch = require('node-fetch')
+const md5 = require('md5')
 const config = require('../config')
 
 module.exports.init = (router) => {
@@ -25,12 +26,12 @@ function* create() {
   }else if(!password) {
     this.throw(401, '密码不能为空')
   }else {
+    debug('md5(admin): %s', md5('admin'))
+
     if(username === 'admin' && password === md5('admin')) {
       const token = jwt.sign({
-        code: code,
-        session_key: openReturn.session_key,
-        openid: openReturn.openid,
-        wx_expires_in: openReturn.expires_in
+        username: username,
+        password: password
       }, config.jwt.key)
       this.status = 200
       this.body = {
@@ -43,8 +44,5 @@ function* create() {
       debug('用户名或密码错误')
       this.throw(401, '用户名或密码错误')
     }
-    
-  }else {
-    this.throw(401, 'invalid wx code')
   }
 }

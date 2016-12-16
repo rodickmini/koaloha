@@ -27,6 +27,7 @@
     "koa-onerror": "^3.0.1",
     "koa-router": "^5.4.0",
     "lodash": "^4.17.2",
+    "md5": "^2.2.1",
     "mongoose": "^4.7.2",
     "node-fetch": "^1.6.3"
   },
