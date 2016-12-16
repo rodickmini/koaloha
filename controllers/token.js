@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:06:12
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-15 18:38:06
+* @Last Modified time: 2016-12-16 11:39:36
 */
 
 'use strict'
@@ -18,11 +18,14 @@ module.exports.init = (router) => {
 }
 
 function* create() {
-  let code = this.request.body.code
-  if(code) {
-    let url = `${config.wx.jscode2session_url}?appid=${config.wx.appid}&secret=${config.wx.secret}&js_code=${code}&grant_type=authorization_code`
-    let openReturn = yield utils.proxy.call(this, url)
-    if(!openReturn.errcode) {
+  let data = this.request.body
+  let username = data.username, password = data.password
+  if(!username || username === '') {
+    this.throw(401, '用户名不能为空')
+  }else if(!password) {
+    this.throw(401, '密码不能为空')
+  }else {
+    if(username === 'admin' && password === md5('admin')) {
       const token = jwt.sign({
         code: code,
         session_key: openReturn.session_key,
@@ -37,8 +40,8 @@ function* create() {
         }
       }
     }else {
-      debug("微信jscode2session_url出错：%o", openReturn)
-      this.throw(401, openReturn.errmsg)
+      debug('用户名或密码错误')
+      this.throw(401, '用户名或密码错误')
     }
     
   }else {

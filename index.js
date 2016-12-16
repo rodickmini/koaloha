@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 15:11:11
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-15 20:37:35
+* @Last Modified time: 2016-12-16 11:27:52
 */
 
 'use strict'
@@ -16,6 +16,11 @@ let app = require('koa')(),
   controllers = require('./controllers/'),
   utils = require('./utils/'),
   debug = utils.debug
+
+/**
+* mongoose's default promise library is deprecated
+*/
+mongoose.Promise = global.Promise
 
 co(function * () {
 
