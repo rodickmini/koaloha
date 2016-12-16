@@ -2,14 +2,13 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-16 12:36:17
+* @Last Modified time: 2016-12-16 12:50:06
 */
 
 'use strict'
 
 const utils = require('../utils')
 const debug = utils.debug
-const mongoose = require('mongoose')
 const tokenVerify = require('../middlewares/token-verify')
 const ArticleModel = require('../models/article')
 
@@ -37,7 +36,7 @@ function* newArticle() {
     createTime: +new Date(),
     tags: data.tags
   }).save().catch(err => {
-    debug(500, 'save article failed')
+    this.trow(500, err)
   })
 
   debug('save article result: %o', result)
