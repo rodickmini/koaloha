@@ -51,6 +51,7 @@
   .login-form
     width 300px
     margin 0 auto
+    background-color white
     .form-control
       margin-bottom 10px
     input
