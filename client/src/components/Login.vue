@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <hello/>
     <form class="login-form">
       <div class="form-control">
@@ -44,7 +44,10 @@
   }
 </script>
 <style lang="stylus" scoped>
-  @import '../assets/stylus/variables'
+@import '../assets/stylus/variables'
+.wrapper
+  position relative
+  z-index 1
   .login-form
     width 300px
     margin 0 auto
@@ -67,5 +70,6 @@
       color white
       margin-top 20px
       padding .5em
+      cursor pointer
       
 </style>
