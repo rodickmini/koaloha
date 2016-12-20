@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="article-list">
     <section class="section" v-for="article in articleList">
       <div class="content">
         <h1>
@@ -37,6 +37,11 @@
           intro: '总结了4种“左右固定中间自适应的3栏布局”，强烈参考了张鑫旭的博客 1.左侧左浮动，右侧右浮动 左侧左浮动，右侧右浮动，中间div设置左右margin、宽度自适应，中间一栏必须放在最后 <style> html, body {margin: 0; padding: 0; height: 100%;} ',
           katime: '10天前',
           htime: '2016年12月20日 14:00'
+        },{
+          title: 'TYPEOF操作符', 
+          intro: 'JS中，typeof操作符返回一个字符串，表明typeof 后面操作数的类型 // Numbers typeof 37 === \'number\'; typeof 3.14 === \'number\'; typeof Math.LN2 === \'number\'; typeof Infinity === \'number\';',
+          katime: '1天前',
+          htime: '2016年12月20日 14:00'
         }
       ]
     }
@@ -44,22 +49,24 @@
   }
 </script>
 <style lang="stylus" scoped>
-  .section:not(#top)
-    padding 30px 100px 0
-    text-align center
-    .content
-      margin 0 auto
-      max-width 750px
-      text-align left
-      h1
-        font-size 1.5em
-        margin-bottom 0
-        letter-spacing 2px
-        .katime
-          font-size 12px
-          color #bbb
-          font-weight normal
-      p
-        margin-top 0
-        letter-spacing 1px
+.article-list
+  margin-bottom 300px
+.section:not(#top)
+  padding 30px 100px 0
+  text-align center
+  .content
+    margin 0 auto
+    max-width 750px
+    text-align left
+    h1
+      font-size 1.5em
+      margin-bottom 0
+      letter-spacing 2px
+      .katime
+        font-size 12px
+        color #bbb
+        font-weight normal
+    p
+      margin-top 0
+      letter-spacing 1px
 </style>
