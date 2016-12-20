@@ -2,11 +2,22 @@
 * @Author: caiyou
 * @Date:   2016-12-20 15:52:58
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-20 18:19:00
+* @Last Modified time: 2016-12-20 20:58:29
 */
 
 'use strict'
 const host = "http://localhost:3000/"
+
+let hd = new Headers({
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+})
+
+let storage = window.localStorage
+let token = storage.getItem('koaloha_token')
+if(token) {
+  hd.append('Authorization', token)
+}
 
 /**
 * 解析response，调用response.json()方法后返回一个Promise，其resolve参数为返回的消息体
@@ -37,10 +48,6 @@ function checkStatus ([status, statusText, data]) {
 */
 export default {
   get: function(url, params={}) {
-    let hd = new Headers({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    })
     const init = {
       method: 'GET',
       headers: hd,
@@ -50,10 +57,6 @@ export default {
     return fetch(url, init).then(parseResponse).then(checkStatus)
   },
   post: function(url, params={}) {
-    let hd = new Headers({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    })
     const init = {
       method: 'POST',
       headers: hd,
@@ -63,10 +66,6 @@ export default {
     return fetch(url, init).then(parseResponse).then(checkStatus)
   },
   put: function(url, params={}) {
-    let hd = new Headers({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    })
     const init = {
       method: 'PUT',
       headers: hd,
@@ -76,10 +75,6 @@ export default {
     return fetch(url, init).then(parseResponse).then(checkStatus)
   },
   patch: function(url, params={}) {
-    let hd = new Headers({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    })
     const init = {
       method: 'PATCH',
       headers: hd,
@@ -89,10 +84,6 @@ export default {
     return fetch(url, init).then(parseResponse).then(checkStatus)
   },
   delete: function(url, params={}) {
-    let hd = new Headers({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    })
     const init = {
       method: 'DELETE',
       headers: hd,
