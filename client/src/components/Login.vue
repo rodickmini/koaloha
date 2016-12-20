@@ -30,9 +30,9 @@
     methods: {
       login: function() {
         sessionService.login(this.username, md5(this.password)).then((r) => {
-          console.log('进login.vue的then...')
           if(r.code === 0) {
-            console.log(r.data)
+            let storage = window.localStorage
+            storage.setItem('koaloha_token', r.data.token)
             alert('登录成功！')
           }
         }).catch((err) => {
