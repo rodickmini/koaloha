@@ -3,22 +3,35 @@
     <hello/>
     <form class="login-form">
       <div class="form-control">
-        <input type="text" name="username" placeholder="username">
+        <input type="text" name="username" placeholder="username" v-bind="username">
       </div>
       <div class="form-control">
-        <input type="password" name="password" placeholder="password">
+        <input type="password" name="password" placeholder="password" v-bind="password">
       </div>
       <div class="form-control">
-        <button type="submit" class="btn">Sign in</button>
+        <button type="submit" class="btn" @click.prevent="login">Sign in</button>
       </div>
     </form>
   </div>
 </template>
 <script>
   let Hello = require('components/Hello')
+  import sessionService from "../services/session"
   export default {
     name: 'login',
-    components: {Hello}
+    components: {Hello},
+    data: function() {
+      return {
+        username: '',
+        password: ''
+      }
+    },
+    methods: {
+      login: function() {
+        console.log('login clicked.....')
+        sessionService.login(this.username, this.password)
+      }
+    }
   }
 </script>
 <style lang="stylus" scoped>
