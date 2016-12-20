@@ -1,11 +1,18 @@
 <template>
-  <div id="logo" class="logo">koaloha</div>
+  <div>
+    <hello/>
+    <list/>
+  </div>
 </template>
-<script></script>
-<style scoped>
-  .logo {
-    font: 150px 'Italiana', sans-serif;
-    text-transform: lowercase;
-    text-align: center;
+<script>
+  let Hello = require('components/Hello')
+  let List = require('components/List')
+  export default {
+    name: 'index',
+    components: {Hello, List}
   }
+</script>
+<style lang="stylus" scoped>
+  
+      
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    <footer class="copyright">&copy; koaloha</footer>
   </div>
 </template>
 
@@ -12,20 +13,16 @@ export default {
 }
 </script>
 
-<style scoped>
-#app {
-  height: 100%;
-  background: white;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  font: 17px/1.5 "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-  color: #2c3e50;
-   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.content {
-  margin: 0 auto;
-  max-width: 750px;
-  text-align: left;
-}
+<style lang="stylus" scoped>
+#app
+  min-height 100%
+  background white
+  overflow-y scroll
+  overflow-x hidden
+  font 14px/1.5 sans-serif
+  color #666
+  -webkit-font-smoothing antialiased
+  .copyright
+    padding 100px
+    text-align center
 </style>
