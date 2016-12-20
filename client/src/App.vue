@@ -19,9 +19,6 @@ export default {
   background white
   overflow-y scroll
   overflow-x hidden
-  font 14px/1.5 sans-serif
-  color #666
-  -webkit-font-smoothing antialiased
   .copyright
     padding 100px
     text-align center

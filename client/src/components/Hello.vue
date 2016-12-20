@@ -20,11 +20,13 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '../assets/stylus/variables'
   .container
     text-align center
     padding 100px
   .logo
     font-size 100px
-    color #333
+    font-family san-serif
+    color $themeColor
     text-transform lowercase
 </style>

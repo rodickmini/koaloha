@@ -1,9 +1,14 @@
+@import 'variables'
+
 html, body
   height 100%
+  font 400 14px/1.5 "PT Sans", Helvetica, Arial, sans-serif
+  color #666
+  -webkit-font-smoothing antialiased
   
 a
-  color #4078c0
+  color $themeColor
   text-decoration none
   background-color transparent
   &:hover
-    text-decoration underline
+    border-bottom 1px solid
