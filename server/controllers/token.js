@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:06:12
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-16 13:55:10
+* @Last Modified time: 2016-12-20 16:54:22
 */
 
 'use strict'
@@ -20,6 +20,8 @@ module.exports.init = (router) => {
 function* create() {
   let data = this.request.body
   let username = data.username, password = data.password
+
+  debug(data)
   if(!username || username === '') {
     this.throw(401, '用户名不能为空')
   }else if(!password) {
@@ -32,6 +34,7 @@ function* create() {
         username: username,
         password: password
       }, config.jwt.key)
+      debug('token: %o', token)
       this.status = 200
       this.body = {
         code: 0,

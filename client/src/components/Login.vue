@@ -3,10 +3,10 @@
     <hello/>
     <form class="login-form">
       <div class="form-control">
-        <input type="text" name="username" placeholder="username" v-bind="username">
+        <input type="text" name="username" placeholder="username" v-model="username">
       </div>
       <div class="form-control">
-        <input type="password" name="password" placeholder="password" v-bind="password">
+        <input type="password" name="password" placeholder="password" v-model="password">
       </div>
       <div class="form-control">
         <button type="submit" class="btn" @click.prevent="login">Sign in</button>
@@ -15,7 +15,8 @@
   </div>
 </template>
 <script>
-  let Hello = require('components/Hello')
+  const Hello = require('components/Hello')
+  const md5 = require('md5')
   import sessionService from "../services/session"
   export default {
     name: 'login',
@@ -28,8 +29,13 @@
     },
     methods: {
       login: function() {
-        console.log('login clicked.....')
-        sessionService.login(this.username, this.password)
+        sessionService.login(this.username, md5(this.password)).then((r) => {
+          console.log('dengluchenggong....')
+          console.log(r)
+          alert('login successfully')
+        }).catch((err) => {
+          alert(err)
+        })
       }
     }
   }

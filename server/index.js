@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 15:11:11
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-16 14:35:58
+* @Last Modified time: 2016-12-20 16:34:24
 */
 
 'use strict'
@@ -11,6 +11,7 @@ let app = require('koa')(),
   co = require('co'),
   router = require('koa-router')(),
   bodyParser = require('koa-bodyparser'),
+  cors = require('kcors'),
   onerror = require('koa-onerror'),
   mongoose = require('mongoose'),
   render = require('koa-ejs'),
@@ -54,6 +55,11 @@ co(function * () {
   app.use(bodyParser())
 
   /**
+  * 打开跨域请求
+  */
+  app.use(cors())
+
+  /**
   * 静态文件server，允许浏览器缓存7天
   */
   app.use(staticFile('static', {
@@ -69,5 +75,6 @@ co(function * () {
   app.listen(3000)
   debug(process.env.npm_package_name + ' is listening at PORT: %d', 3000)
 }).catch((err) => {
+  debut('co的锅...')
   debug(err.stack)
 })
