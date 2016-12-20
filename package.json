@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev-server": "NODE_ENV=development DEBUG=koaloha supervisor ./server/index.js",
-    "dev-client": "node build/dev-server.js"
+    "dev-client": "node client/build/dev-server.js"
   },
   "repository": {
     "type": "git",

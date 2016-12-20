@@ -1,6 +1,8 @@
 var semver = require('semver')
 var chalk = require('chalk')
-var packageConfig = require('../package.json')
+var path = require('path')
+var projectRoot = path.resolve(__dirname, '../../')
+var packageConfig = require(path.join(projectRoot, './package.json'))
 var exec = function (cmd) {
   return require('child_process')
     .execSync(cmd).toString().trim()
