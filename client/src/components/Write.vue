@@ -52,7 +52,7 @@
     width 50%
     height 100%
     padding 10px
-    background-color #2d2d2d
+    background-color rgba(25, 25, 25, .98)
     color #ccc
     outline none
     border none
