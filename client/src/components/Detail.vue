@@ -1,12 +1,13 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <router-link to="/">HELLO</router-link>
+  <div>
+    <hello/>
   </div>
 </template>
 
 <script>
+let Hello = require('components/Hello')
 export default {
+  components: {Hello},
   data () {
     return {
       msg: 'Detail....'
