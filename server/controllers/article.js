@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-16 13:47:12
+* @Last Modified time: 2016-12-21 21:00:49
 */
 
 'use strict'
@@ -14,7 +14,8 @@ const ArticleModel = require('../models/article')
 
 module.exports.init = (router) => {
   router.post('/articles', tokenVerify, newArticle)
-  router.get('/articles', tokenVerify, getArticles)
+  router.get('/articles', getArticles)
+  router.patch('/articles/:id', tokenVerify, updateArticles)
 }
 
 function* newArticle() {
@@ -25,12 +26,16 @@ function* newArticle() {
   if(!data.title || data.title === '') {
     this.throw(400, '文章标题不能为空')
   }
+  if(!data.abstract || data.abstract === '') {
+    this.throw(400, '文章摘要不能为空')
+  }
   if(!data.content || data.content === '') {
     this.throw(400, '文章正文不能为空')
   }
 
   let result = yield new ArticleModel({
     title: data.title,
+    abstract: data.abstract,
     content: data.content,
     author: !data.author || data.author === '' ? 'rodick' : data.author,
     createTime: +new Date(),

@@ -13,6 +13,7 @@
   let marked = require('marked')
   require('../assets/stylus/markdown.styl')
   let _ = require('lodash')
+  import articleService from "../services/article"
   export default {
     name: 'write',
     components: {Hello},
@@ -36,7 +37,23 @@
         this.isFullscreen = !this.isFullscreen
       },
       save: function() {
+        let self = this
         console.log(this.articleInfo)
+        if(!this.articleInfo.id) {//create
+          articleService.addOne(
+            this.articleInfo.title, this.articleInfo.abstract, this.articleInfo.content).then((r) => {
+            if(r.code === 0) {
+              self.articleInfo.id = r.data.id
+              console.log('saved!')
+            }
+          }).catch((err) => {
+            console.log(err)
+            alert(err.err_msg)
+          })
+        }else {//update
+          
+        }
+        
       }
     },
     watch: {
@@ -47,12 +64,10 @@
         
         abstract = content.match(/>.*\n/g)
         abstract = abstract ? abstract[0].replace(/^>\s*/, '') : 'default abstract'
-        
-        this.articleInfo = {
-          title: title,
-          abstract: abstract,
-          content: content
-        }
+
+        this.articleInfo.title = title
+        this.articleInfo.abstract = abstract
+        this.articleInfo.content = content
         this.save()//每1000ms自动保存
       }, 1000)
     }
