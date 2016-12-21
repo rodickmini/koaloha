@@ -51,7 +51,15 @@
             alert(err.err_msg)
           })
         }else {//update
-          
+          articleService.update(this.articleInfo.id, 
+            this.articleInfo.title, this.articleInfo.abstract, this.articleInfo.content).then((r) => {
+            if(r.code === 0) {
+              console.log('updated!')
+            }
+          }).catch((err) => {
+            console.log(err)
+            alert(err.err_msg)
+          })
         }
         
       }
