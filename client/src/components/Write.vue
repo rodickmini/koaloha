@@ -12,13 +12,15 @@
   let Hello = require('components/Hello')
   let marked = require('marked')
   require('../assets/stylus/markdown.styl')
+  let _ = require('lodash')
   export default {
     name: 'write',
     components: {Hello},
     data() {
       return {
         inputContent: '# markdown here',
-        isFullscreen: false
+        isFullscreen: false,
+        articleInfo: {}
       }
     },
     computed: {
@@ -32,7 +34,26 @@
     methods: {
       fullscreen: function() {
         this.isFullscreen = !this.isFullscreen
+      },
+      save: function() {
+
       }
+    },
+    watch: {
+      inputContent: _.debounce(function() {
+        let title, abstract, content = this.inputContent
+        title = content.match(/#.*\n/g)//以#开头后面跟任意字符，以\n结尾
+        title = title ? title[0].replace(/^#*\s*/, '') : 'default title'//!fixme:匹配首尾 ###
+        
+        abstract = content.match(/>.*\n/g)
+        abstract = abstract ? abstract[0].replace(/^>\s*/, '') : 'default abstract'
+        
+        this.articleInfo = {
+          title: title,
+          abstract: abstract,
+          content: content
+        }
+      }, 1000)
     }
   }
 </script>
