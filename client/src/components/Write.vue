@@ -10,6 +10,7 @@
 <script>
   let Hello = require('components/Hello')
   let marked = require('marked')
+  require('../assets/stylus/markdown.styl')
   export default {
     name: 'write',
     components: {Hello},
