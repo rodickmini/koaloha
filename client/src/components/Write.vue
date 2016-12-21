@@ -36,7 +36,7 @@
         this.isFullscreen = !this.isFullscreen
       },
       save: function() {
-
+        console.log(this.articleInfo)
       }
     },
     watch: {
@@ -53,6 +53,7 @@
           abstract: abstract,
           content: content
         }
+        this.save()//每1000ms自动保存
       }, 1000)
     }
   }
