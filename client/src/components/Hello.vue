@@ -1,9 +1,9 @@
 <template>
   <section id="top" class="section">
     <div class="container">
-      <router-link to="/">
-        <div id="logo" class="logo">{{siteName}}</div>
-      </router-link>
+        <div id="logo" class="logo">
+          <router-link to="/">{{siteName}}</router-link>
+        </div>
       <div id="intro" class="intro">{{siteIntro}}</div>
     </div>
   </section>
