@@ -69,7 +69,7 @@
     absolute top 0 right 50%
     padding 0 10px
     color $themeColor
-    font-size 30px
+    font-size 22px
     cursor pointer
     transform rotate(90deg)
 </style>
