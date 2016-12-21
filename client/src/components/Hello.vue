@@ -1,7 +1,9 @@
 <template>
   <section id="top" class="section">
     <div class="container">
-      <div id="logo" class="logo">{{siteName}}</div>
+      <router-link to="/">
+        <div id="logo" class="logo">{{siteName}}</div>
+      </router-link>
       <div id="intro" class="intro">{{siteIntro}}</div>
     </div>
   </section>
