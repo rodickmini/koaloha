@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-21 21:00:49
+* @Last Modified time: 2016-12-21 21:09:23
 */
 
 'use strict'
@@ -67,6 +67,38 @@ function* getArticles() {
     code: 0,
     data: {
       articles: articles
+    }
+  }
+}
+
+function* updateArticles() {
+  let id = this.params.id
+  let data = this.request.body
+
+  debug('id: %s', id)
+  debug('data: %o', data)
+
+  if(!data.title || data.title === '') {
+    this.throw(400, '文章标题不能为空')
+  }
+  if(!data.abstract || data.abstract === '') {
+    this.throw(400, '文章摘要不能为空')
+  }
+  if(!data.content || data.content === '') {
+    this.throw(400, '文章正文不能为空')
+  }
+  let result = yield ArticleModel.update({_id: id}, {
+    $set: {
+      title: data.title,
+      abstract: data.abstract,
+      content: data.content
+    }
+  })
+  this.status = 200
+  this.body = {
+    code: 0,
+    data: {
+      result: result
     }
   }
 }
