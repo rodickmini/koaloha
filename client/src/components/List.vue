@@ -3,7 +3,7 @@
     <section class="section" v-for="article in articleList">
       <div class="content">
         <h1>
-          <a href="">{{article.title}}</a>
+          <router-link to="/detail">{{article.title}}</router-link>
           <span class="katime" :title="article.htime">{{article.katime}}</span>
         </h1>
         <p>{{article.intro}}</p>
