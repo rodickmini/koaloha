@@ -66,6 +66,9 @@ module.exports = {
       }
     ]
   },
+  stylus: {
+    use: [require('nib')()]
+  },
   vue: {
     loaders: utils.cssLoaders({ sourceMap: useCssSourceMap }),
     postcss: [
