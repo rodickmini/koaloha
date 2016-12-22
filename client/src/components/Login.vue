@@ -29,11 +29,12 @@
     },
     methods: {
       login: function() {
+        let self = this
         sessionService.login(this.username, md5(this.password)).then((r) => {
           if(r.code === 0) {
             let storage = window.localStorage
             storage.setItem('koaloha_token', r.data.token)
-            alert('登录成功！')
+            self.$router.push('/write')
           }
         }).catch((err) => {
           console.log(err)
