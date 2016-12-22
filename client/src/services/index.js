@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-20 15:52:58
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-20 20:58:29
+* @Last Modified time: 2016-12-22 13:42:08
 */
 
 'use strict'
@@ -50,10 +50,10 @@ export default {
   get: function(url, params={}) {
     const init = {
       method: 'GET',
-      headers: hd,
-      body: JSON.stringify(params)
+      headers: hd
     }
     url = host + url
+    console.log(url)
     return fetch(url, init).then(parseResponse).then(checkStatus)
   },
   post: function(url, params={}) {

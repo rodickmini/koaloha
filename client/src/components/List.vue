@@ -3,8 +3,8 @@
     <section class="section" v-for="article in articleList">
       <div class="content">
         <h1>
-          <router-link to="/detail">{{article.title}}</router-link>
-          <span class="katime" :title="article.htime">{{article.katime}}</span>
+          <router-link :to="'/detail/' + article._id">{{article.title}}</router-link>
+          <span class="katime" :title="article.createTime">{{article.createTime}}</span>
         </h1>
         <p>{{article.abstract}}</p>
       </div>
@@ -12,13 +12,25 @@
   </div>
 </template>
 <script>
+  import articleService from "../services/article"
   export default {
     name: 'list',
     data () {
-    return {
-      articleList: []
+      return {
+        articleList: []
+      }
+    },
+    created () {
+      articleService.getList({
+        start: 0, limit: 10
+      }).then((r) => {
+        if(r.code === 0) {
+          this.articleList = r.data.articles
+        }
+      }).catch((err) => {
+        alert(err.err_msg)
+      })
     }
-  }
   }
 </script>
 <style lang="stylus" scoped>

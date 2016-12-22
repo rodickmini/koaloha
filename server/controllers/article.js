@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-21 21:09:23
+* @Last Modified time: 2016-12-22 14:00:36
 */
 
 'use strict'
@@ -60,7 +60,14 @@ function* getArticles() {
 
   let start = this.query.start || 0
   let limit = this.query.limit || 10
-  let articles = yield ArticleModel.find().skip(~~start).limit(~~limit)
+  //返回title, abstract, author, tags, createTime字段
+  let articles = yield ArticleModel.find({}, {
+    "title": 1,
+    "abstract": 1,
+    "author": 1,
+    "tags": 1,
+    "createTime": 1
+  }).skip(~~start).limit(~~limit)
   debug('articles: %o', articles)
   this.status = 200
   this.body = {
