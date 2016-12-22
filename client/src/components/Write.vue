@@ -38,7 +38,6 @@
       },
       save: function() {
         let self = this
-        console.log(this.articleInfo)
         if(!this.articleInfo.id) {//create
           articleService.addOne(
             this.articleInfo.title, this.articleInfo.abstract, this.articleInfo.content).then((r) => {
@@ -47,7 +46,6 @@
               console.log('saved!')
             }
           }).catch((err) => {
-            console.log(err)
             alert(err.err_msg)
           })
         }else {//update
@@ -57,7 +55,6 @@
               console.log('updated!')
             }
           }).catch((err) => {
-            console.log(err)
             alert(err.err_msg)
           })
         }
@@ -67,15 +64,21 @@
     watch: {
       inputContent: _.debounce(function() {
         let title, abstract, content = this.inputContent
-        title = content.match(/#.*\n/g)//以#开头后面跟任意字符，以\n结尾
+        title = content.match(/#.*\n/)//匹配第一个“以#开头后面跟任意字符，以\n结尾”的字符串作为标题
         title = title ? title[0].replace(/^#*\s*/, '') : 'default title'//!fixme:匹配首尾 ###
         
-        abstract = content.match(/>.*\n/g)
-        abstract = abstract ? abstract[0].replace(/^>\s*/, '') : 'default abstract'
+        abstract = content.match(/>.*\n/)//匹配第一个“以>开头后面跟任意字符，以\n结尾”的字符串作为摘要，如果匹配失败则返回null
+        if(abstract) {
+          let cleanAbstract = abstract[0].replace(/^>\s*/, '')
+          abstract = cleanAbstract === '' ? '' : cleanAbstract
+        }else {
+          abstract = 'default abstract'
+        }
 
         this.articleInfo.title = title
         this.articleInfo.abstract = abstract
         this.articleInfo.content = content
+
         this.save()//每1000ms自动保存
       }, 1000)
     }

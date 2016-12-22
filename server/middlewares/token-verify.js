@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-15 16:45:45
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-21 20:40:54
+* @Last Modified time: 2016-12-22 10:59:56
 */
 
 'use strict'
@@ -29,6 +29,6 @@ module.exports = function* (next) {
     return yield next
   }catch(err) {
     debug(err)
-    this.throw(401, '鉴权失败，请重试')//无效jwt直接抛出错误
+    this.throw(401, err)
   }
 }
