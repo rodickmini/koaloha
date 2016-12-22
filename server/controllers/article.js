@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-22 14:00:36
+* @Last Modified time: 2016-12-22 14:19:11
 */
 
 'use strict'
@@ -13,8 +13,9 @@ const tokenVerify = require('../middlewares/token-verify')
 const ArticleModel = require('../models/article')
 
 module.exports.init = (router) => {
-  router.post('/articles', tokenVerify, newArticle)
   router.get('/articles', getArticles)
+  router.get('/articles/:id', getArticleDetail)
+  router.post('/articles', tokenVerify, newArticle)
   router.patch('/articles/:id', tokenVerify, updateArticles)
 }
 
@@ -74,6 +75,22 @@ function* getArticles() {
     code: 0,
     data: {
       articles: articles
+    }
+  }
+}
+
+function* getArticleDetail() {
+  let id = this.params.id
+  debug('article id: %s', id)
+  let article = yield ArticleModel.findOne().where({
+    _id: id
+  })
+  debug('article: %o', article)
+  this.status = 200
+  this.body = {
+    code: 0,
+    data: {
+      article: article
     }
   }
 }

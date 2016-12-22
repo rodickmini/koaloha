@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-21 20:36:55
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-22 13:32:11
+* @Last Modified time: 2016-12-22 14:21:38
 */
 
 'use strict'
@@ -17,8 +17,9 @@ export default {
     return api.patch(`articles/${id}`, {title, abstract, content})
   },
   getList: function(params) {
-    console.log('get list...')
-    console.log(params)
-    return api.get(`articles`)
+    return api.get(`articles/start=${params.start}&limit=${params.limit}`)
+  },
+  getDetail: function(id) {
+    return api.get(`articles/${id}`)
   }
 }
