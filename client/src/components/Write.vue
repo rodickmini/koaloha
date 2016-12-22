@@ -24,6 +24,11 @@
         articleInfo: {}
       }
     },
+    mounted() {
+      setTimeout(() => {
+        this.fullscreen()
+      }, 500)
+    },
     computed: {
       outputContent: function() {
         return marked(this.inputContent)
