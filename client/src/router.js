@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-16 18:03:57
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-21 14:53:27
+* @Last Modified time: 2016-12-22 14:07:48
 */
 
 'use strict'
@@ -15,7 +15,7 @@ import Write from 'components/Write'
 export default {
   routes: [
     {path: '/', component: Index},
-    {path: '/detail', component: Detail},
+    {path: '/detail/:id', component: Detail},
     {path: '/login', component: Login},
     {path: '/write', component: Write}
   ]

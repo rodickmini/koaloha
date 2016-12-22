@@ -7,11 +7,15 @@
 <script>
 let Hello = require('components/Hello')
 export default {
+  name: 'detail',
   components: {Hello},
   data () {
     return {
-      msg: 'Detail....'
+
     }
+  },
+  created() {
+    let articleId = this.$route.params.id
   }
 }
 </script>
