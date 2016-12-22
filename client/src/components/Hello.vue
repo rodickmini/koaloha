@@ -1,5 +1,6 @@
 <template>
   <section id="top" class="section">
+    <sandwich></sandwich>
     <div class="container">
         <div id="logo" class="logo">
           <router-link to="/">{{siteName}}</router-link>
@@ -10,8 +11,10 @@
 </template>
 
 <script>
+let Sandwich = require('components/Sandwich')
 export default {
   name: 'hello',
+  components: {Sandwich},
   data () {
     return {
       siteName: 'koaloha',
