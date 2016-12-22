@@ -2,7 +2,7 @@
   <div>
     <hello/>
     <div class="write-container" v-bind:class="{fullscreen: isFullscreen}">
-      <span class="toggle-fs-btn" title="full screen" @click="fullscreen" v-html="fullScreenIcon"></span>
+      <span class="toggle-fs-btn" :title="fullScreenTitle" @click="fullscreen" v-html="fullScreenIcon"></span>
       <textarea class="write-space" v-model="inputContent"></textarea>
       <div class="result-space" v-html="outputContent"></div>
     </div>
@@ -30,6 +30,9 @@
       },
       fullScreenIcon: function() {
         return this.isFullscreen ? '><' : '<>'
+      },
+      fullScreenTitle: function() {
+        return this.isFullscreen ? 'dock to bottom' : 'full screen'
       }
     },
     methods: {
