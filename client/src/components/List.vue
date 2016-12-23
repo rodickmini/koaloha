@@ -4,7 +4,7 @@
       <div class="content">
         <h1>
           <router-link :to="'/detail/' + article._id">{{article.title}}</router-link>
-          <span class="katime" :title="article.createTime">{{article.createTime}}</span>
+          <span class="article-meta">{{article.author}} 写于 <span :title="new Date(+article.createTime)">{{+article.createTime | nicedate}}</span></span>
         </h1>
         <p>{{article.abstract}}</p>
       </div>
@@ -30,6 +30,17 @@
       }).catch((err) => {
         alert(err.err_msg)
       })
+    },
+    filters: {
+      nicedate: function(value) {
+        //ref: https://github.com/ssbc/nicedate
+        let nicedate = require('nicedate')
+        try {
+          return nicedate(value, true, 'zh')
+        }catch (e) {
+          console.log(e)
+        }
+      }
     }
   }
 </script>
@@ -47,9 +58,9 @@
       font-size 1.5em
       margin-bottom 0
       letter-spacing 2px
-      .katime
+      .article-meta
         font-size 12px
-        color #bbb
+        color #aaa
         font-weight normal
     p
       margin-top 0
