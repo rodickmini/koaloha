@@ -1,5 +1,5 @@
 <template>
-  <span class="article-meta">{{author}} 写于 <span :title="new Date(+timestamp)">{{+timestamp | nicedate}}</span></span>
+  <span class="article-meta">{{author}}·<span :title="new Date(+timestamp)">{{+timestamp | nicedate}}</span></span>
 </template>
 <script>
 export default {
