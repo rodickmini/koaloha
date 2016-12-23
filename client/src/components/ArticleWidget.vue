@@ -1,6 +1,7 @@
 <template>
   <div class="article-widget">
-    <span>阅读{{readCount}}次 · 评论{{commentCount}}次</span> <span class="dynamic-actions">
+    <span>阅读{{readCount}}次 · 评论{{commentCount}}次</span>
+    <span class="dynamic-actions"> · 
       <router-link :to="'/edit/' + id">编辑</router-link>
     </span>
   </div>
