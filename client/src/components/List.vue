@@ -7,6 +7,7 @@
           <article-meta :author="article.author" :timestamp="article.createTime"></article-meta>
         </h1>
         <p v-html="article.abstract_marked"></p>
+        <article-widget :id="article._id" :read-count="96" :comment-count="38"></article-widget>
       </div>
     </section>
     <div class="loadmore-container" v-show="!nomore">
@@ -20,11 +21,12 @@
 <script>
   import articleService from "../services/article"
   let ArticleMeta = require('components/ArticleMeta')
+  let ArticleWidget = require('components/ArticleWidget')
   let marked = require('marked')
   const ARTICLES_PER_PAGE = 10
   export default {
     name: 'list',
-    components: {ArticleMeta},
+    components: {ArticleMeta, ArticleWidget},
     data () {
       return {
         articleList: [],
@@ -83,8 +85,8 @@
       margin-bottom 0
       letter-spacing 2px
     p
-      margin-top 0
       letter-spacing 1px
+    
 .loadmore-container
   margin-top 30px
   text-align center
