@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-15 20:44:42
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-21 20:24:42
+* @Last Modified time: 2016-12-23 10:45:06
 */
 
 'use strict'
@@ -15,7 +15,7 @@ ArticleSchema = new mongoose.Schema({
   abstract: String,
   content: String,
   author: String,
-  createTime: Date,
+  createTime: String,
   tags: [String]
 })
 
