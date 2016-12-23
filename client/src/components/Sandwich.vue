@@ -17,7 +17,7 @@ export default {
   methods: {
     rmStorage: function() {
       localStorage.removeItem('koaloha_token')
-      this.$router.push('/login')
+      this.$router.push('/signin')
     }
   }
 }

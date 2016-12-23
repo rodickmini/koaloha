@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <hello/>
-    <form class="login-form">
+    <form class="signin-form">
       <div class="form-control">
         <input type="text" name="username" placeholder="username" v-model="username">
       </div>
@@ -9,7 +9,7 @@
         <input type="password" name="password" placeholder="password" v-model="password">
       </div>
       <div class="form-control">
-        <button type="submit" class="btn" @click.prevent="login">Sign in</button>
+        <button type="submit" class="btn" @click.prevent="signin">Sign in</button>
       </div>
     </form>
   </div>
@@ -19,7 +19,7 @@
   const md5 = require('md5')
   import sessionService from "../services/session"
   export default {
-    name: 'login',
+    name: 'signin',
     components: {Hello},
     data: function() {
       return {
@@ -28,9 +28,9 @@
       }
     },
     methods: {
-      login: function() {
+      signin: function() {
         let self = this
-        sessionService.login(this.username, md5(this.password)).then((r) => {
+        sessionService.signin(this.username, md5(this.password)).then((r) => {
           if(r.code === 0) {
             let storage = window.localStorage
             storage.setItem('koaloha_token', r.data.token)
@@ -49,7 +49,7 @@
 .wrapper
   position relative
   z-index 1
-  .login-form
+  .signin-form
     width 300px
     margin 0 auto
     background-color white
