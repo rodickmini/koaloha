@@ -4,7 +4,7 @@
       <div class="content">
         <h1>
           <router-link :to="'/detail/' + article._id">{{article.title}}</router-link>
-          <span class="article-meta">{{article.author}} 写于 <span :title="new Date(+article.createTime)">{{+article.createTime | nicedate}}</span></span>
+          <article-meta :author="article.author" :timestamp="article.createTime"></article-meta>
         </h1>
         <p>{{article.abstract}}</p>
       </div>
@@ -13,8 +13,10 @@
 </template>
 <script>
   import articleService from "../services/article"
+  let ArticleMeta = require('components/ArticleMeta')
   export default {
     name: 'list',
+    components: {ArticleMeta},
     data () {
       return {
         articleList: []
@@ -30,17 +32,6 @@
       }).catch((err) => {
         alert(err.err_msg)
       })
-    },
-    filters: {
-      nicedate: function(value) {
-        //ref: https://github.com/ssbc/nicedate
-        let nicedate = require('nicedate')
-        try {
-          return nicedate(value, true, 'zh')
-        }catch (e) {
-          console.log(e)
-        }
-      }
     }
   }
 </script>
@@ -58,10 +49,6 @@
       font-size 1.5em
       margin-bottom 0
       letter-spacing 2px
-      .article-meta
-        font-size 12px
-        color #aaa
-        font-weight normal
     p
       margin-top 0
       letter-spacing 1px

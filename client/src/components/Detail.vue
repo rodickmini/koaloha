@@ -2,9 +2,7 @@
   <div>
     <hello/>
     <div class="article-detail">
-      <div class="article-meta">
-        <span>{{article.author}} 写于 <span :title="new Date(+article.createTime)">{{+article.createTime | nicedate}}</span></span>
-      </div>
+      <article-meta :author="article.author" :timestamp="article.createTime"></article-meta>
       <div class="content" v-html="articleMarked"></div>
     </div>
   </div>
@@ -12,11 +10,12 @@
 
 <script>
 let Hello = require('components/Hello')
+let ArticleMeta = require('components/ArticleMeta')
 let marked = require('marked')
 import articleService from "../services/article"
 export default {
   name: 'detail',
-  components: {Hello},
+  components: {Hello, ArticleMeta},
   data () {
     return {
       article: '',
@@ -33,16 +32,6 @@ export default {
     }).catch((err) => {
       alert(err.err_msg)
     })
-  },
-  filters: {
-    nicedate: function(value) {
-      let nicedate = require('nicedate')
-      try {
-        return nicedate(value, true, 'zh')
-      }catch (e) {
-        console.log(e)
-      }
-    }
   }
 }
 </script>
