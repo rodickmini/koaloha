@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-22 14:19:11
+* @Last Modified time: 2016-12-23 10:58:30
 */
 
 'use strict'
@@ -39,7 +39,7 @@ function* newArticle() {
     abstract: data.abstract,
     content: data.content,
     author: !data.author || data.author === '' ? 'rodick' : data.author,
-    createTime: +new Date(),
+    createTime: Date.now(),
     tags: data.tags
   }).save().catch(err => {
     this.trow(500, err)
