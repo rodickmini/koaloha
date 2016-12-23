@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-23 10:58:30
+* @Last Modified time: 2016-12-23 12:57:26
 */
 
 'use strict'
@@ -68,7 +68,9 @@ function* getArticles() {
     "author": 1,
     "tags": 1,
     "createTime": 1
-  }).skip(~~start).limit(~~limit)
+  }).skip(~~start).limit(~~limit).sort({
+    createTime: -1
+  })
   debug('articles: %o', articles)
   this.status = 200
   this.body = {
