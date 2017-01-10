@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-16 18:03:57
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-23 17:21:18
+* @Last Modified time: 2017-01-10 14:55:24
 */
 
 'use strict'
@@ -28,6 +28,17 @@ export default {
     },
     { path: '/write', component: Write,
       beforeEnter: (to, from, next) => {
+        let jwtToken = localStorage.getItem('koaloha_token')
+        if(jwtToken === null) {
+          next('/signin')
+        }else {//TODO: 这个地方应该去服务器验证一下
+          next()
+        }
+      }
+    },
+    { path: '/edit/:id', component: Write,
+      beforeEnter: (to, from, next) => {
+        console.log('before enter...')
         let jwtToken = localStorage.getItem('koaloha_token')
         if(jwtToken === null) {
           next('/signin')

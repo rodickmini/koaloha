@@ -69,16 +69,42 @@
         
       }
     },
+    beforeRouteEnter: (to, from, next) => {
+      if(to.params.id) {
+        let articleId = to.params.id
+        articleService.getDetail(articleId).then((r) => {
+          if(r.code === 0) {
+            next(vm => {
+              vm.articleInfo = r.data.article
+              vm.inputContent = r.data.article.content
+            })
+          }else {
+            alert('get article info failed')
+            next(false)
+          }
+        }).catch((err) => {
+          alert(err.err_msg)
+          next(false)
+        })
+      }else {
+        next(vm => {
+          vm.articleInfo = {}
+          vm.inputContent = '# markdown here'
+          vm.isFullscreen = false
+        })
+      }
+    },
     watch: {
       inputContent: _.debounce(function() {
         let title, abstract, content = this.inputContent
         title = content.match(/#.*\n/)//匹配第一个“以#开头后面跟任意字符，以\n结尾”的字符串作为标题
-        title = title ? title[0].replace(/^#*\s*/, '') : 'default title'//!fixme:匹配首尾 ###
+        console.log('title\n', title)
+        title = title ? title[0].replace(/^#*\s*|\s*$/, '') : 'default title'//!fixme:匹配首尾 ###
         
         abstract = content.match(/>.*\n/)//匹配第一个“以>开头后面跟任意字符，以\n结尾”的字符串作为摘要，如果匹配失败则返回null
         if(abstract) {
           let cleanAbstract = abstract[0].replace(/^>\s*/, '')
-          abstract = cleanAbstract === '' ? '' : cleanAbstract
+          abstract = cleanAbstract === '' ? 'default abstract' : cleanAbstract
         }else {
           abstract = 'default abstract'
         }
