@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2017-01-16 17:11:17
+* @Last Modified time: 2017-01-16 17:14:20
 */
 
 'use strict'
@@ -88,7 +88,7 @@ function* getArticleDetail() {
   let article = yield ArticleModel.findOneAndUpdate(
     { _id: id },
     { $inc: { 'pv': 1 } }
-  )
+  )//find article and auto increase pv
   debug('article: %o', article)
   this.status = 200
   this.body = {
