@@ -13,13 +13,14 @@
   let marked = require('marked')
   require('../assets/stylus/markdown.styl')
   let _ = require('lodash')
+  let defaultContent = '# write article title here\n\n> write article abstract here\n\nwrite content after...'
   import articleService from "../services/article"
   export default {
     name: 'write',
     components: {Hello},
     data() {
       return {
-        inputContent: '# markdown here',
+        inputContent: defaultContent,
         isFullscreen: false,
         articleInfo: {}
       }
@@ -89,7 +90,7 @@
       }else {
         next(vm => {
           vm.articleInfo = {}
-          vm.inputContent = '# markdown here'
+          vm.inputContent = defaultContent
           vm.isFullscreen = false
         })
       }

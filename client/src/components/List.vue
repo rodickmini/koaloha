@@ -1,5 +1,8 @@
 <template>
   <div class="article-list">
+    <div class="section" v-show="articleList.length === 0">
+      <router-link class="btn" :to="'/write'">write your first article</router-link>
+    </div>
     <section class="section" v-for="article in articleList">
       <div class="content">
         <h1>
@@ -11,10 +14,7 @@
       </div>
     </section>
     <div class="loadmore-container" v-show="!nomore">
-      <button class="btn-loadmore" @click="loadmore">loadmore</button>
-    </div>
-    <div class="loadmore-container" v-show="nomore">
-      <button class="btn-loadmore" disabled>no more articles</button>
+      <button class="btn btn-loadmore" @click="loadmore">loadmore</button>
     </div>
   </div>
 </template>
@@ -30,7 +30,7 @@
     data () {
       return {
         articleList: [],
-        nomore: false
+        nomore: true
       }
     },
     created () {
@@ -42,6 +42,11 @@
             articleObj.abstract_marked = marked(articleObj.abstract)
             return articleObj
           })
+          if(this.articleList.length === 0) {
+            this.nomore = true
+          }else {
+            this.nomore = false
+          }
         }
       }).catch((err) => {
         alert(err.err_msg)
@@ -90,14 +95,14 @@
 .loadmore-container
   margin-top 30px
   text-align center
-  .btn-loadmore
-    padding 10px
-    border none
-    outline none
-    background-color $themeColor
-    color white
-    cursor pointer
-    &[disabled]
-      background-color #bbb
-      cursor default
+.btn
+  padding 10px
+  border none
+  outline none
+  background-color $themeColor
+  color white
+  cursor pointer
+  &[disabled]
+    background-color #bbb
+    cursor default
 </style>
