@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2017-01-16 16:58:11
+* @Last Modified time: 2017-01-16 17:11:17
 */
 
 'use strict'
@@ -85,11 +85,11 @@ function* getArticles() {
 function* getArticleDetail() {
   let id = this.params.id
   debug('article id: %s', id)
-  let article = yield ArticleModel.findOne().where({
-    _id: id
-  })
+  let article = yield ArticleModel.findOneAndUpdate(
+    { _id: id },
+    { $inc: { 'pv': 1 } }
+  )
   debug('article: %o', article)
-  yield updatePv(id)//add one pv
   this.status = 200
   this.body = {
     code: 0,
@@ -130,19 +130,4 @@ function* updateArticles() {
     }
   }
 }
-
-function* updatePv(id) {
-  debug('upd article pv, id: %s', id)
-
-  let article = yield ArticleModel.findOne().where({
-    _id: id
-  })
-  let pv = article.pv
-  let result = yield ArticleModel.update({_id: id}, {
-    $set: {
-      pv: ++pv
-    }
-  })
-}
-
 
