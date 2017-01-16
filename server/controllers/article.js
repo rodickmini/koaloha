@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2017-01-16 16:57:00
+* @Last Modified time: 2017-01-16 16:58:11
 */
 
 'use strict'
@@ -89,7 +89,7 @@ function* getArticleDetail() {
     _id: id
   })
   debug('article: %o', article)
-  yield updatePv(id)
+  yield updatePv(id)//add one pv
   this.status = 200
   this.body = {
     code: 0,
