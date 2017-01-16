@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2016-12-23 12:57:26
+* @Last Modified time: 2017-01-16 15:09:22
 */
 
 'use strict'
@@ -51,7 +51,7 @@ function* newArticle() {
   this.body = {
     code: 0,
     data: {
-      id: result._id
+      _id: result._id
     }
   }
 }

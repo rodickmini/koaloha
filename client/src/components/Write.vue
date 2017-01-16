@@ -46,18 +46,18 @@
       },
       save: function() {
         let self = this
-        if(!this.articleInfo.id) {//create
+        if(!this.articleInfo._id) {//create
           articleService.addOne(
             this.articleInfo.title, this.articleInfo.abstract, this.articleInfo.content).then((r) => {
             if(r.code === 0) {
-              self.articleInfo.id = r.data.id
+              self.articleInfo._id = r.data._id
               console.log('saved!')
             }
           }).catch((err) => {
             alert(err.err_msg)
           })
         }else {//update
-          articleService.update(this.articleInfo.id, 
+          articleService.update(this.articleInfo._id, 
             this.articleInfo.title, this.articleInfo.abstract, this.articleInfo.content).then((r) => {
             if(r.code === 0) {
               console.log('updated!')
