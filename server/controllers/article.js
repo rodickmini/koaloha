@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-14 17:58:43
 * @Last Modified by:   caiyou
-* @Last Modified time: 2017-01-16 15:09:22
+* @Last Modified time: 2017-01-16 16:57:00
 */
 
 'use strict'
@@ -67,7 +67,8 @@ function* getArticles() {
     "abstract": 1,
     "author": 1,
     "tags": 1,
-    "createTime": 1
+    "createTime": 1,
+    "pv": 1
   }).skip(~~start).limit(~~limit).sort({
     createTime: -1
   })
@@ -88,6 +89,7 @@ function* getArticleDetail() {
     _id: id
   })
   debug('article: %o', article)
+  yield updatePv(id)
   this.status = 200
   this.body = {
     code: 0,
@@ -127,6 +129,20 @@ function* updateArticles() {
       result: result
     }
   }
+}
+
+function* updatePv(id) {
+  debug('upd article pv, id: %s', id)
+
+  let article = yield ArticleModel.findOne().where({
+    _id: id
+  })
+  let pv = article.pv
+  let result = yield ArticleModel.update({_id: id}, {
+    $set: {
+      pv: ++pv
+    }
+  })
 }
 
 

@@ -10,7 +10,7 @@
           <article-meta :author="article.author" :timestamp="article.createTime"></article-meta>
         </h1>
         <p v-html="article.abstract_marked"></p>
-        <article-widget :id="article._id" :read-count="96" :comment-count="38"></article-widget>
+        <article-widget :id="article._id" :read-count="article.pv || 0" :comment-count="article.comment_count || 0"></article-widget>
       </div>
     </section>
     <div class="loadmore-container" v-show="!nomore">
