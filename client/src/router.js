@@ -2,7 +2,7 @@
 * @Author: caiyou
 * @Date:   2016-12-16 18:03:57
 * @Last Modified by:   caiyou
-* @Last Modified time: 2017-01-10 14:55:24
+* @Last Modified time: 2017-01-21 16:54:14
 */
 
 'use strict'
@@ -22,7 +22,7 @@ export default {
         if(jwtToken === null) {
           next()
         }else {
-          next(from.path)//TODO: 这个地方应该去服务器验证一下
+          next(from.path)
         }
       }
     },
@@ -30,7 +30,7 @@ export default {
       beforeEnter: (to, from, next) => {
         let jwtToken = localStorage.getItem('koaloha_token')
         if(jwtToken === null) {
-          next('/signin')
+          next('/signin?redirect=' + to.path)
         }else {//TODO: 这个地方应该去服务器验证一下
           next()
         }
@@ -41,7 +41,7 @@ export default {
         console.log('before enter...')
         let jwtToken = localStorage.getItem('koaloha_token')
         if(jwtToken === null) {
-          next('/signin')
+          next('/signin?redirect=' + to.path)
         }else {//TODO: 这个地方应该去服务器验证一下
           next()
         }

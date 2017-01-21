@@ -24,8 +24,17 @@
     data: function() {
       return {
         username: '',
-        password: ''
+        password: '',
+        redirect: '/'
       }
+    },
+    created: function() {
+      console.log(this.$router)
+    },
+    beforeRouteEnter: (to, from, next) => {
+      next(vm => {
+        vm.redirect = to.query.redirect
+      })
     },
     methods: {
       signin: function() {
@@ -34,7 +43,7 @@
           if(r.code === 0) {
             let storage = window.localStorage
             storage.setItem('koaloha_token', r.data.token)
-            self.$router.push('/write')
+            self.$router.push(self.redirect)
           }
         }).catch((err) => {
           console.log(err)

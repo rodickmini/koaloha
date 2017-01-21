@@ -70,7 +70,7 @@
         
       }
     },
-    beforeRouteEnter: (to, from, next) => {
+    beforeRouteEnter: (to, from, next) => {//fetch article data before route enter
       if(to.params.id) {
         let articleId = to.params.id
         articleService.getDetail(articleId).then((r) => {
