@@ -10,7 +10,7 @@
           <article-meta :author="article.author" :timestamp="article.createTime"></article-meta>
         </h1>
         <p v-html="article.abstract_marked"></p>
-        <article-widget :id="article._id" :read-count="article.pv || 0" :comment-count="article.comment_count || 0"></article-widget>
+        <article-widget :id="article._id" :read-count="article.pv || 0" :comment-count="article.comment_count || 0" :master-privilege="masterPrivilege"></article-widget>
       </div>
     </section>
     <div class="loadmore-container" v-show="!nomore">
@@ -30,7 +30,8 @@
     data () {
       return {
         articleList: [],
-        nomore: true
+        nomore: true,
+        masterPrivilege: false
       }
     },
     created () {
@@ -51,6 +52,11 @@
       }).catch((err) => {
         alert(err.err_msg)
       })
+      let jwtToken = localStorage.getItem('koaloha_token')
+      //如果成功获取token，说明已登录，授予master权限
+      if(jwtToken) {
+        this.masterPrivilege = true//TODO: 这个地方应该去服务器验证一下
+      }
     },
     methods: {
       loadmore: function() {
